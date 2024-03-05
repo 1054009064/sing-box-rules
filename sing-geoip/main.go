@@ -246,7 +246,16 @@ func release(source string, destination string, output string, ruleSetOutput str
 }
 
 func setActionOutput(name string, content string) {
-	os.Stdout.WriteString("::set-output name=" + name + "::" + content + "\n")
+	file, err := os.Create("output.env")
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	_, err = file.WriteString(name + "=" + content + "\n")
+	if err != nil {
+		panic(err)
+	}
 }
 
 func main() {
