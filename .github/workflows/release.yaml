@@ -49,7 +49,7 @@ jobs:
         run: echo "time=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT
       
       - name: Create a release
-        uses: softprops/action-gh-release@master
+        uses: softprops/action-gh-release@v2.1.0
         with:
           tag_name: ${{ steps.time.outputs.time }}
           name: ${{ steps.time.outputs.time }}
